@@ -1,32 +1,27 @@
 package com.example.fragment2_16_01_23.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.example.fragment2_16_01_23.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MenuFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MenuFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    var listener: InterfazMenuClick? = null
+    private var botonesMenu = arrayOf<Int>(R.id.ivGears, R.id.ivLinterna, R.id.ivMusica)
+    private var imagenesBotonesIluminados = arrayOf<Int>(R.drawable.gears2, R.drawable.linterna2, R.drawable.musica2)
+
+    private var botonIluminado = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            botonIluminado = it.getInt("Boton")
         }
     }
 
@@ -38,23 +33,22 @@ class MenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_menu, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MenuFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MenuFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        var btnImagen: ImageView
+        for (i in botonesMenu.indices) {
+            btnImagen = view.findViewById(botonesMenu[i])
+        }
     }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is InterfazMenuClick) listener = context
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
 }
