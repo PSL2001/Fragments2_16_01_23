@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".DosActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fg_menu"
+        android:name="com.example.fragment2_16_01_23.fragments.MenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fg_generico"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fg_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
