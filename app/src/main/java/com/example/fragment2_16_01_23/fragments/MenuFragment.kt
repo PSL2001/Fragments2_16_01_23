@@ -32,13 +32,21 @@ class MenuFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_menu, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var btnImagen: ImageView
-        for (i in botonesMenu.indices) {
-            btnImagen = view.findViewById(botonesMenu[i])
+        var botonImagen: ImageView
+        for (i in botonesMenu.indices){
+            botonImagen = view.findViewById<ImageView>(botonesMenu[i])
+            if (i==botonIluminado){
+                //cambio la imagen del iv por la iluminada
+                botonImagen.setImageResource(imagenesBotonesIluminados[i])
+            }
+            //Le ponemos el listener
+            botonImagen.setOnClickListener {
+                listener?.onMenuClick(i)
+            }
         }
+
     }
 
     override fun onAttach(context: Context) {
